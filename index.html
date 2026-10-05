@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAROVA FIT · Catálogo</title>
+<style>
+:root{--bg:#080808;--card:#111;--line:#292929;--orange:#ff8500;--lime:#d9ff00}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+.nav{position:sticky;top:0;z-index:50;background:#080808ee;border-bottom:1px solid #222;backdrop-filter:blur(12px)}
+.navin{max-width:1500px;margin:auto;padding:14px 28px;display:flex;align-items:center;gap:24px}
+.logo{font-size:24px;font-weight:900;letter-spacing:2px}.nav a{color:#bbb;text-decoration:none}
+.nav .btn{border:1px solid #444;padding:9px 13px;border-radius:9px;color:#fff}.spacer{flex:1}
+.hero{max-width:1500px;margin:auto;padding:65px 28px 35px}
+.kicker{font-size:12px;color:var(--orange);font-weight:800;letter-spacing:2px}
+.hero h1{font-size:clamp(40px,6vw,76px);line-height:.95;margin:12px 0}.hero h1 span{color:var(--orange)}
+.hero p{color:#999;max-width:760px;line-height:1.6}
+.tools{max-width:1500px;margin:auto;padding:10px 28px 30px;display:flex;gap:12px}
+.tools input,.tools select{background:#101010;color:#eee;border:1px solid #333;border-radius:10px;padding:13px}
+.tools input{flex:1}.section{max-width:1500px;margin:auto;padding:15px 28px 50px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:30px 0 18px}
+.section h2{font-size:30px;margin:5px 0}.count{color:#777;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:#555}
+.photo{position:relative;background:#0e0e0e;aspect-ratio:4/4.5;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{position:absolute;left:10px;top:10px;z-index:2;background:#111d;border:1px solid #555;border-radius:999px;padding:6px 8px;font-size:10px;letter-spacing:1px}
+.zoom{position:absolute;right:10px;top:10px;z-index:3;width:36px;height:36px;border:0;border-radius:50%;background:#111d;color:#fff;font-size:20px;cursor:pointer}
+.info{padding:15px}.cat{font-size:11px;color:var(--orange);font-weight:800;letter-spacing:1.2px}
+.info h3{font-size:18px;margin:8px 0 17px;min-height:43px}.bottom{display:flex;align-items:center;gap:8px}
+.bottom strong{color:var(--lime);font-size:14px;flex:1}.wa{background:#171717;border:1px solid #444;color:#fff;border-radius:9px;padding:9px 11px;text-decoration:none;font-size:13px}
+.modal{display:none;position:fixed;inset:0;background:#000e;z-index:100;align-items:center;justify-content:center;padding:25px}
+.modal.open{display:flex}.modal img{max-width:95vw;max-height:90vh;object-fit:contain;border-radius:10px}
+.close{position:fixed;right:20px;top:18px;background:#222;color:#fff;border:1px solid #555;border-radius:9px;padding:9px 13px;cursor:pointer}
+footer{text-align:center;color:#666;padding:35px 20px;border-top:1px solid #222}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:750px){.grid{grid-template-columns:repeat(2,1fr)}.navin{padding:13px 15px;gap:12px}.navin a:not(.btn){display:none}.hero,.tools,.section{padding-left:15px;padding-right:15px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.tools{display:block}.tools>*{width:100%;margin-bottom:10px}}
+
+/* ===== FORMATO MAROVA FIT ===== */
+.nav{background:#111419f5;border-bottom:1px solid #252a30}
+.navin{max-width:none;height:86px;padding:0 74px;gap:34px}
+.brand{width:300px;display:flex!important;flex-direction:column;text-decoration:none!important;line-height:.78}
+.brand span{font-size:30px;font-weight:900;letter-spacing:2px;color:#f4f4f4}
+.brand small{font-size:11px;letter-spacing:4px;color:#f32b91;margin-left:48px;margin-top:6px;font-weight:800}
+.menu{display:flex;align-items:center;gap:25px;flex:1}
+.menu a{font-weight:700;color:#e8e8e8!important;font-size:16px;white-space:nowrap}
+.nav-search{margin-left:auto}
+.nav-search input{width:270px;height:43px;border:0;border-radius:24px;padding:0 20px;background:#fff;color:#222;font-size:14px;outline:none}
+.section{max-width:none;padding:22px 74px 55px}
+.section-head{display:none}
+.grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:23px}
+.card{background:#15191e;border:1px solid #2c3239;border-radius:17px;box-shadow:0 8px 24px #0005}
+.photo{aspect-ratio:1/1.17;background:#e9e9e9}
+.photo img{object-fit:cover}
+.badge{background:#f22d8e;border:0;color:#fff;font-weight:800;letter-spacing:.2px;padding:7px 13px;top:12px;left:12px}
+.zoom{background:#fff;color:#111;width:44px;height:44px;font-size:21px;right:13px;top:13px}
+.info{padding:17px 17px 18px}
+.cat{color:#aeb3ba;font-size:12px;letter-spacing:1.4px}
+.info h3{font-size:20px;min-height:48px;margin:9px 0 15px}
+.bottom{align-items:flex-end}
+.bottom strong{color:#f34a9d;font-size:16px;line-height:1.05}
+.wa{background:#21d66b;border:0;color:#08120c;font-weight:700;border-radius:23px;padding:11px 17px}
+#cuidado{padding-top:5px}
+#cuidado .grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+#cuidado .section-head{display:flex}
+#cuidado .section-head h2{color:#fff}
+footer{margin-top:15px}
+@media(max-width:1250px){
+  .navin{padding:0 35px}.brand{width:220px}.menu{gap:16px}.menu a{font-size:14px}
+  .grid,#cuidado .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .section{padding-left:35px;padding-right:35px}
+}
+@media(max-width:900px){
+  .navin{height:auto;min-height:82px;flex-wrap:wrap;padding:12px 18px}
+  .brand{width:auto}.menu{order:3;width:100%;overflow:auto;padding-bottom:4px}
+  .nav-search{margin-left:auto}.nav-search input{width:220px}
+  .grid,#cuidado .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:650px){
+  .nav-search{width:100%}.nav-search input{width:100%}
+  .grid,#cuidado .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .section{padding-left:14px;padding-right:14px}.info h3{font-size:16px}
+}
+</style></head><body>
+<nav class="nav">
+<div class="navin">
+  <a class="brand" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+    <span>MAROVA</span><small>FIT</small>
+  </a>
+  <div class="menu">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Inicio</a>
+    <a href="#ropa">Mujer</a>
+    <a href="#ropa">Hombre</a>
+    <a href="#ropa">Bodys</a>
+    <a href="#cuidado">Cuidado Personal</a>
+    <a href="#ropa">Accesorios</a>
+  </div>
+  <div class="nav-search">
+    <input id="search" placeholder="Buscar productos..." oninput="filterCards()">
+  </div>
+</div>
+</nav>
+
+
+<main>
+<section class="section" id="ropa"><div style="display:flex;align-items:center;justify-content:space-between;margin:4px 0 18px"><div><div class="kicker">MAROVA FIT</div><h2 style="margin:5px 0 0;font-size:28px">Nuestra colección</h2></div><div class="count" id="countRopaTop">Cargando…</div></div><div class="section-head"><div><div class="kicker">COLECCIÓN</div><h2>PRENDAS DEPORTIVAS</h2></div>
+<div class="count" id="countRopa">Cargando…</div></div><div class="grid" id="gridRopa"><div class="marova-loading" style="grid-column:1/-1;padding:40px;text-align:center;color:#888">Cargando catálogo…</div></div></section>
+<section class="section" id="cuidado"><div class="section-head"><div><div class="kicker">BIENESTAR</div><h2>CUIDADO PERSONAL</h2></div>
+<div class="count">Cargando…</div></div><div class="grid"><div class="marova-loading" style="grid-column:1/-1;padding:40px;text-align:center;color:#888">Cargando catálogo…</div></div></section>
+</main>
+<div class="modal" id="modal" onclick="closeModal()"><button class="close" onclick="closeModal();event.stopPropagation()">Cerrar</button><img id="modalImg" src="" alt="" onclick="event.stopPropagation()"></div>
+<footer>MAROVA FIT · Catálogo</footer>
+<script>
+function zoom(btn){const img=btn.parentElement.querySelector('img');document.getElementById('modalImg').src=img.src;document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function filterCards(){const q=document.getElementById('search').value.toLowerCase().trim();document.querySelectorAll('#gridRopa .card').forEach(c=>c.style.display=c.dataset.name.includes(q)?'':'none');const n=[...document.querySelectorAll('#gridRopa .card')].filter(c=>c.style.display!=='none').length;document.getElementById('countRopa').textContent=n+' prendas';if(document.getElementById('countRopaTop'))document.getElementById('countRopaTop').textContent=n+' prendas'}
+function sortCards(){const g=document.getElementById('gridRopa');const a=[...g.querySelectorAll('.card')];const d=document.getElementById('sort').value==='za'?-1:1;a.sort((x,y)=>x.dataset.name.localeCompare(y.dataset.name,'es')*d);a.forEach(c=>g.appendChild(c))}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});sortCards();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ===== MAROVA FIT + SUPABASE ===== */
+const MAROVA_SUPABASE_URL = "https://jasrzsimjwopcwrswaux.supabase.co";
+const MAROVA_SUPABASE_KEY = "sb_publishable_DxyHDk6v7RpH6CnIPPzl7w_lu6jZuTX";
+const marovaDB = window.supabase.createClient(MAROVA_SUPABASE_URL, MAROVA_SUPABASE_KEY);
+let marovaProducts = [];
+
+function marovaMoney(v){
+  return Number(v || 0).toLocaleString("es-MX",{style:"currency",currency:"MXN"});
+}
+function marovaEsc(v){
+  return String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+function marovaIsCare(p){
+  const c=(p.categoria||"").toLowerCase();
+  return c.includes("cuidado") || c.includes("personal") || c.includes("crema") || c.includes("skin");
+}
+function marovaCard(p){
+  const offer=Number(p.precio_oferta)>0 && Number(p.precio_oferta)<Number(p.precio);
+  const price = offer ? marovaMoney(p.precio_oferta) : (Number(p.precio)>0 ? marovaMoney(p.precio) : "Consultar precio");
+  const old = offer ? `<span style="color:#888;text-decoration:line-through;font-size:12px">${marovaMoney(p.precio)}</span>` : "";
+  const img = p.imagen_url
+    ? `<img src="${marovaEsc(p.imagen_url)}" alt="${marovaEsc(p.nombre)}" loading="lazy">`
+    : `<div style="color:#777;font-size:13px">Sin fotografía</div>`;
+  const badge = offer ? "OFERTA" : "FOTO ORIGINAL";
+  const waText = encodeURIComponent("Hola, me interesa: "+(p.nombre||"Producto"));
+  return `<article class="card" data-name="${marovaEsc((p.nombre||"").toLowerCase())}">
+    <div class="photo"><span class="badge">${badge}</span><button class="zoom" onclick="zoom(this)">⌕</button>${img}</div>
+    <div class="info"><div class="cat">MAROVA FIT · ${marovaEsc(p.categoria||"PRODUCTO")}</div>
+    <h3>${marovaEsc(p.nombre||"Producto")}</h3>
+    <div class="bottom"><strong>${price} ${old}</strong>
+    <a class="wa" target="_blank" href="https://wa.me/526624809155?text=${waText}">WhatsApp</a></div>
+    ${Number(p.stock||0)>0 ? `<div style="font-size:11px;color:#888;margin-top:8px">Existencia: ${p.stock}</div>` : `<div style="font-size:11px;color:#888;margin-top:8px">Agotado</div>`}
+    </div></article>`;
+}
+function marovaRender(){
+  const ropa=document.getElementById("gridRopa");
+  if(!ropa) return;
+  const cuidado=document.querySelector("#cuidado .grid");
+  const r=marovaProducts.filter(p=>!marovaIsCare(p));
+  const c=marovaProducts.filter(p=>marovaIsCare(p));
+  ropa.innerHTML=r.map(marovaCard).join("") || '<div style="color:#777;padding:30px">No hay prendas publicadas.</div>';
+  if(cuidado) cuidado.innerHTML=c.map(marovaCard).join("") || '<div style="color:#777;padding:30px">No hay productos publicados.</div>';
+  const cr=document.getElementById("countRopaTop"), crr=document.getElementById("countRopa");
+  if(cr) cr.textContent=r.length+" prendas";
+  if(crr) crr.textContent=r.length+" prendas";
+  filterCards();
+}
+function filterCards(){
+  const q=(document.getElementById("search")?.value||"").toLowerCase().trim();
+  let total=0;
+  document.querySelectorAll("#gridRopa .card,#cuidado .grid .card").forEach(c=>{
+    const show=!q || (c.dataset.name||"").includes(q);
+    c.style.display=show?"":"none";
+    if(show) total++;
+  });
+  const cr=document.getElementById("countRopaTop");
+  if(cr && document.getElementById("search")) cr.textContent=total+" productos";
+}
+async function loadMarovaProducts(){
+  const {data,error}=await marovaDB.from("productos")
+    .select("id,nombre,categoria,precio,precio_oferta,stock,descripcion,imagen_url,activo,created_at")
+    .eq("activo",true)
+    .order("created_at",{ascending:false});
+  if(error){
+    console.error("Supabase MAROVA FIT:",error);
+    const msg = '<div style="grid-column:1/-1;padding:40px;text-align:center;color:#b00020">No se pudieron cargar los productos. Revisa la conexión con Supabase.</div>';
+    const ropa=document.getElementById("gridRopa");
+    const cuidado=document.querySelector("#cuidado .grid");
+    if(ropa) ropa.innerHTML=msg;
+    if(cuidado) cuidado.innerHTML=msg;
+    return;
+  }
+  marovaProducts=data||[];
+  marovaRender();
+}
+loadMarovaProducts();
+</script>
+
+</body></html>
