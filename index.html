@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MAROVA FIT - Colección deportiva">
+<title>MAROVA FIT | Athletic & Health</title>
+<style>
+:root{
+  --fondo:#111419;--fondo2:#191d24;--naranja:#ff4c29;
+  --verde:#d4ff3f;--azul:#203764;--blanco:#f5f5f2;--gris:#9298a3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--fondo);color:var(--blanco);font-family:Arial,Helvetica,sans-serif}
+a{text-decoration:none;color:inherit}
+.contenedor{width:min(1180px,calc(100% - 40px));margin:auto}
+
+nav{
+ position:fixed;top:0;left:0;right:0;z-index:1000;height:72px;
+ display:flex;align-items:center;justify-content:space-between;padding:0 30px;
+ background:rgba(17,20,25,.94);border-bottom:1px solid rgba(255,255,255,.08);
+ backdrop-filter:blur(8px)
+}
+.logo{font-size:24px;font-weight:900;letter-spacing:2px}
+.logo span{color:var(--naranja)}
+.menu{display:flex;gap:25px;font-size:14px;font-weight:bold}
+.menu a:hover{color:var(--verde)}
+.boton-nav{background:var(--naranja);color:#111419;padding:11px 18px;font-weight:bold}
+
+.hero{
+ min-height:100vh;padding-top:72px;display:flex;align-items:center;
+ position:relative;overflow:hidden;
+ background:radial-gradient(circle at 85% 20%,rgba(255,76,41,.28),transparent 38%),
+ radial-gradient(circle at 10% 85%,rgba(212,255,63,.10),transparent 35%),var(--fondo)
+}
+.hero:after{
+ content:"";position:absolute;width:700px;height:2px;right:-100px;top:180px;
+ background:var(--naranja);transform:rotate(25deg);opacity:.5;
+ box-shadow:0 35px 0 rgba(255,76,41,.35),0 70px 0 rgba(212,255,63,.25)
+}
+.hero-contenido{position:relative;z-index:2}
+.etiqueta{color:var(--verde);font-size:13px;letter-spacing:3px;font-weight:bold;margin-bottom:22px}
+.hero h1{font-size:clamp(48px,9vw,105px);line-height:.9;font-weight:900;letter-spacing:-4px}
+.naranja{color:var(--naranja)}
+.hero-texto{max-width:600px;color:var(--gris);font-size:18px;line-height:1.6;margin-top:28px}
+.botones{display:flex;gap:15px;flex-wrap:wrap;margin-top:35px}
+.boton-principal,.boton-secundario{display:inline-block;padding:16px 28px;font-weight:bold}
+.boton-principal{background:var(--naranja);color:#111419}
+.boton-secundario{border:1px solid rgba(255,255,255,.35)}
+.boton-secundario:hover{border-color:var(--verde);color:var(--verde)}
+
+.estadisticas{display:grid;grid-template-columns:repeat(3,1fr);margin-top:75px;padding-top:25px;border-top:1px solid rgba(255,255,255,.12);gap:20px}
+.numero{color:var(--verde);font-size:27px;font-weight:bold}
+.descripcion{color:var(--gris);font-size:11px;text-transform:uppercase;margin-top:5px}
+
+section{padding:110px 0}
+.titulo-seccion{margin-bottom:48px}
+.mini{color:var(--naranja);font-size:12px;letter-spacing:2px;font-weight:bold;margin-bottom:12px}
+.titulo-seccion h2{font-size:clamp(32px,5vw,54px);line-height:1}
+
+.categorias{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.categoria{min-height:210px;background:#15191f;padding:30px;display:flex;flex-direction:column;justify-content:space-between;transition:.25s}
+.categoria:hover{background:var(--fondo2);transform:translateY(-4px)}
+.categoria-num{color:var(--gris);font-size:12px}
+.categoria h3{font-size:21px;margin-bottom:8px}
+.categoria p{color:var(--gris);font-size:14px;line-height:1.5}
+
+.productos{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.producto{background:var(--fondo2);border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:.25s}
+.producto:hover{transform:translateY(-5px);border-color:var(--naranja)}
+.foto{display:block;width:100%;height:360px;border:0;padding:0;background:#eee;cursor:pointer;overflow:hidden}
+.foto img{width:100%;height:100%;object-fit:cover;display:block;transition:.35s}
+.foto:hover img{transform:scale(1.06)}
+.producto-info{padding:20px}
+.producto-categoria{color:var(--gris);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.producto h3{font-size:18px;margin-top:8px}
+.precio-fila{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
+.precio{color:var(--verde);font-size:15px;font-weight:bold}
+.comprar{border:1px solid rgba(255,255,255,.3);background:transparent;color:white;padding:9px 14px;cursor:pointer;font-weight:bold}
+.comprar:hover{background:var(--naranja);color:#111419;border-color:var(--naranja)}
+
+.beneficios{background:var(--azul)}
+.beneficios-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:35px}
+.beneficio h3{font-size:17px;margin-bottom:8px}
+.beneficio p{color:rgba(255,255,255,.68);font-size:14px;line-height:1.55}
+
+.cta{text-align:center;background:radial-gradient(circle at center,rgba(255,76,41,.17),transparent 60%)}
+.cta h2{font-size:clamp(38px,6vw,65px)}
+.cta p{color:var(--gris);max-width:600px;margin:20px auto;line-height:1.6}
+.whatsapp{position:fixed;right:20px;bottom:20px;z-index:999;background:#25d366;color:white;padding:13px 20px;border-radius:30px;font-weight:bold;box-shadow:0 5px 20px rgba(0,0,0,.3)}
+
+footer{border-top:1px solid rgba(255,255,255,.08);padding:55px 0 30px}
+.footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:35px}
+.footer-col h4{color:var(--gris);font-size:12px;margin-bottom:15px}
+.footer-col a{display:block;font-size:14px;margin-bottom:9px}
+.footer-col a:hover{color:var(--verde)}
+.footer-bottom{margin-top:45px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);color:var(--gris);font-size:12px;display:flex;justify-content:space-between;gap:10px}
+
+.modal{display:none;position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.96);align-items:center;justify-content:center;padding:25px}
+.modal.activo{display:flex}
+.modal img{max-width:94vw;max-height:88vh;object-fit:contain}
+.cerrar{position:absolute;top:12px;right:20px;border:0;background:transparent;color:white;font-size:45px;cursor:pointer}
+
+@media(max-width:900px){
+ .menu{display:none}.categorias,.beneficios-grid{grid-template-columns:repeat(2,1fr)}
+ .productos{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+ nav{padding:0 16px}.contenedor{width:min(100% - 30px,1180px)}
+ .estadisticas{grid-template-columns:1fr 1fr}
+ .categorias,.productos,.beneficios-grid{grid-template-columns:1fr}
+ .foto{height:420px}
+ .whatsapp{right:12px;bottom:12px;padding:11px 16px}
+ .footer-bottom{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">MAROVA<span>.</span></div>
+  <div class="menu">
+    <a href="#categorias">Categorías</a>
+    <a href="#productos">Colección</a>
+    <a href="#beneficios">MAROVA</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a class="boton-nav" href="#productos">Ver colección</a>
+</nav>
+
+<header class="hero">
+  <div class="contenedor hero-contenido">
+    <div class="etiqueta">ENERGÍA · VELOCIDAD · RESISTENCIA</div>
+    <h1>MUÉVETE<br>SIN <span class="naranja">LÍMITES</span></h1>
+    <p class="hero-texto">
+      MAROVA FIT · Athletic & Health. Una colección deportiva pensada para acompañar
+      tu ritmo, tu entrenamiento y tu estilo.
+    </p>
+    <div class="botones">
+      <a class="boton-principal" href="#productos">Ver colección →</a>
+      <a class="boton-secundario" href="#categorias">Explorar</a>
+    </div>
+    <div class="estadisticas">
+      <div><div class="numero">51</div><div class="descripcion">Imágenes de la colección</div></div>
+      <div><div class="numero">MAROVA</div><div class="descripcion">Athletic & Health</div></div>
+      <div><div class="numero">24/7</div><div class="descripcion">Movimiento</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="categorias">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <div class="mini">01 · EXPLORA</div>
+      <h2>Encuentra tu terreno</h2>
+    </div>
+  </div>
+  <div class="contenedor categorias">
+    <div class="categoria"><span class="categoria-num">01</span><div><h3>Running</h3><p>Ligero y listo para acompañar cada kilómetro.</p></div></div>
+    <div class="categoria"><span class="categoria-num">02</span><div><h3>Training</h3><p>Comodidad y libertad para cada entrenamiento.</p></div></div>
+    <div class="categoria"><span class="categoria-num">03</span><div><h3>Recovery</h3><p>Suave y flexible para tu descanso activo.</p></div></div>
+    <div class="categoria"><span class="categoria-num">04</span><div><h3>Outdoor</h3><p>Resistente y preparado para moverte.</p></div></div>
+  </div>
+</section>
+
+<section id="productos">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <div class="mini">02 · COLECCIÓN COMPLETA</div>
+      <h2>Todas las imágenes MAROVA</h2>
+    </div>
+    <div class="productos" id="productosGrid">
+      <div style="grid-column:1/-1;padding:40px;text-align:center;color:#9298a3">Cargando catálogo...</div>
+    </div>
+  </div>
+</section>
+
+<section class="beneficios" id="beneficios">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <div class="mini" style="color:#d4ff3f">03 · POR QUÉ MAROVA</div>
+      <h2>Hecho para rendir, no solo para verse bien</h2>
+    </div>
+    <div class="beneficios-grid">
+      <div class="beneficio"><h3>Tela transpirable</h3><p>Material pensado para acompañar tu movimiento.</p></div>
+      <div class="beneficio"><h3>Comodidad</h3><p>Prendas diseñadas para entrenar con libertad.</p></div>
+      <div class="beneficio"><h3>Diseño deportivo</h3><p>Estilo moderno para entrenamiento y uso diario.</p></div>
+      <div class="beneficio"><h3>Materiales durables</h3><p>Ropa preparada para acompañarte sesión tras sesión.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="contenedor">
+    <h2>Únete al <span class="naranja">movimiento</span></h2>
+    <p>¿Te interesa algún modelo? Presiona WhatsApp y pregunta por disponibilidad, tallas y precio.</p>
+  </div>
+</section>
+
+<a class="whatsapp" href="https://wa.me/526624964748?text=Hola,%20quiero%20informacion%20sobre%20MAROVA" target="_blank" rel="noopener">WhatsApp</a>
+
+<footer>
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo">MAROVA<span>.</span></div>
+        <p style="color:#9298a3;margin-top:10px;font-size:13px">Energía, movimiento y resistencia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>TIENDA</h4>
+        <a href="#categorias">Categorías</a>
+        <a href="#productos">Colección</a>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACTO</h4>
+        <a href="https://wa.me/526624964748" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MAROVA. Todos los derechos reservados.</span>
+      <span>HECHO PARA MOVERSE</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" onclick="cerrarModal(event)">
+  <button class="cerrar" onclick="cerrarModal()">×</button>
+  <img id="imagenModal" src="" alt="Fotografía MAROVA ampliada">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const MAROVA_SUPABASE_URL="https://jasrzsimjwopcwrswaux.supabase.co";
+const MAROVA_SUPABASE_KEY="sb_publishable_DxyHDk6v7RpH6CnIPPzl7w_lu6jZuTX";
+const marovaDB=window.supabase.createClient(MAROVA_SUPABASE_URL,MAROVA_SUPABASE_KEY);
+const productosGrid=document.getElementById("productosGrid");
+function marovaEsc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function marovaMoney(v){const n=Number(v);return Number.isFinite(n)&&n>0?n.toLocaleString("es-MX",{style:"currency",currency:"MXN"}):"Consultar precio"}
+function marovaImage(path){if(!path)return"";const v=String(path);if(/^https?:\/\//i.test(v))return v;return MAROVA_SUPABASE_URL+"/storage/v1/object/public/productos/"+v.replace(/^\/+/,"")}
+function marovaCard(p){
+  const image=marovaImage(p.imagen_url);
+  const offer=Number(p.precio_oferta)>0&&Number(p.precio_oferta)<Number(p.precio);
+  const price=offer?marovaMoney(p.precio_oferta):marovaMoney(p.precio);
+  const old=offer?`<span style="text-decoration:line-through;color:#777;font-size:13px">${marovaMoney(p.precio)}</span>`:"";
+  const stock=Number(p.stock||0)>0?`Existencia: ${marovaEsc(p.stock)}`:"Agotado";
+  return `<article class="producto">
+    <button class="foto" data-src="${marovaEsc(image)}" onclick="abrirFoto(this.dataset.src)" aria-label="Ampliar imagen ${marovaEsc(p.nombre)}">
+      ${image?`<img src="${marovaEsc(image)}" alt="${marovaEsc(p.nombre)}" loading="lazy">`:`<span style="display:grid;place-items:center;width:100%;height:100%;color:#777">Sin foto</span>`}
+    </button>
+    <div class="producto-info">
+      <div class="producto-categoria">${marovaEsc(p.categoria||"MAROVA FIT")}</div>
+      <h3>${marovaEsc(p.nombre||"Producto")}</h3>
+      <div class="precio-fila">
+        <span class="precio">${price}</span>${old}
+        <button class="comprar" data-product="${marovaEsc(p.nombre||"Producto")}" onclick="comprar(this.dataset.product)">WhatsApp</button>
+      </div>
+      <div style="color:#9298a3;font-size:12px;margin-top:8px">${stock}</div>
+    </div>
+  </article>`;
+}
+async function cargarCatalogoMarova(){
+  const {data,error}=await marovaDB.from("productos").select("id,nombre,categoria,precio,precio_oferta,stock,descripcion,imagen_url,activo,created_at").eq("activo",true).order("created_at",{ascending:false});
+  if(error){console.error("MAROVA Supabase:",error);productosGrid.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center;color:#b00020">No se pudo cargar el catálogo desde Supabase.</div>';return;}
+  const productos=data||[];
+  productosGrid.innerHTML=productos.length?productos.map(marovaCard).join(""):'<div style="grid-column:1/-1;padding:40px;text-align:center;color:#9298a3">No hay productos publicados.</div>';
+}
+cargarCatalogoMarova();
+</script>
+<script>
+function abrirFoto(ruta){
+  document.getElementById("imagenModal").src=ruta;
+  document.getElementById("modal").classList.add("activo");
+  document.body.style.overflow="hidden";
+}
+function cerrarModal(event){
+  if(!event || event.target.id==="modal" || event.target.classList.contains("cerrar")){
+    document.getElementById("modal").classList.remove("activo");
+    document.getElementById("imagenModal").src="";
+    document.body.style.overflow="";
+  }
+}
+function comprar(producto){
+  const numero="526624964748";
+  const mensaje="Hola, quiero información sobre " + producto + " de MAROVA.";
+  window.open("https://wa.me/"+numero+"?text="+encodeURIComponent(mensaje),"_blank");
+}
+document.addEventListener("keydown",function(event){
+  if(event.key==="Escape") cerrarModal();
+});
+</script>
+</body>
+</html>
